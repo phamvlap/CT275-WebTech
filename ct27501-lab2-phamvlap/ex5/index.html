@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<title>Machine Learning</title>
+		<style>
+			#image-container {
+				position: relative;
+			}
+			image {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Phát hiện đối tượng</h2>
+		<input type="file" />
+		<hr />
+
+		<!-- Mặc định container được ẩn đi, bỏ display:none để hiển thị -->
+		<div
+			id="container"
+			style="display: none"
+		>
+			<div id="image-container">
+				<canvas></canvas>
+				<img
+					src="#"
+					alt="Anh can xu ly"
+				/>
+			</div>
+
+			<button style="margin-top: 5px">Phát hiện đối tượng</button>
+		</div>
+
+		<!-- Thêm thư viện jQuery và TensorFlow COCO-SSD -->
+
+		<script>
+			// Hàm vẽ hình chữ nhật lên canvas
+			function drawBBox(canvas, x, y, width, height) {
+				let ctx = canvas[0].getContext('2d');
+				ctx.beginPath();
+				ctx.rect(x, y, width, height);
+				ctx.lineWidth = 3;
+				ctx.strokeStyle = 'red';
+				ctx.stroke();
+			}
+
+			// Hàm vẽ văn bản text lên canvas tại vị trí (x, y)
+			function drawText(canvas, text, x, y) {
+				let ctx = canvas[0].getContext('2d');
+				ctx.font = 'bold 20px Roboto';
+				ctx.fillStyle = 'yellow';
+				ctx.fillText(text, x, y);
+			}
+
+			// Hàm xóa nội dung canvas
+			function clearCanvas(canvas, width, height) {
+				let ctx = canvas[0].getContext('2d');
+				ctx.clearRect(0, 0, width, height);
+			}
+
+			// Hàm thay đổi kích thước canvas
+			function resizeCanvas(canvas, width, height) {
+				canvas.prop('width', width);
+				canvas.prop('height', height);
+			}
+
+			// Hàm kiểm tra xem file có phải là ảnh hay không
+			function isImage(file) {
+				return file?.type.startsWith('image/');
+			}
+
+			/* ... */
+		</script>
+	</body>
+</html>
